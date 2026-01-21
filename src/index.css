@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-brand-orange: #FF7A00;
   --color-brand-orange-light: #FFF3E8;

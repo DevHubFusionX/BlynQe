@@ -1,145 +1,135 @@
-import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
+import { useState, useRef } from 'react';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { ChevronDown, MessageCircle } from 'lucide-react';
 
 const FAQPage = () => {
+    const containerRef = useRef(null);
     const [openIndex, setOpenIndex] = useState(null);
-    const [activeCategory, setActiveCategory] = useState('general');
 
-    const categories = [
-        { id: 'general', name: 'General' },
-        { id: 'account', name: 'Account' },
-        { id: 'matching', name: 'Matching' },
-        { id: 'billing', name: 'Billing' }
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
+    const faqs = [
+        {
+            question: "What makes blynQe different?",
+            answer: "We prioritize depth. Our 'Value-First' protocol matches you based on core beliefs and communication styles, not just skin-deep preferences."
+        },
+        {
+            question: "How does verification work?",
+            answer: "Authenticity is our standard. Every profile undergoes mandatory biometric facial verification to ensure a community of 100% real humans."
+        },
+        {
+            question: "Is blynQe available globally?",
+            answer: "We are currently live in 50+ countries. Our rollout is intentional, ensuring high-quality communities in every region we serve."
+        },
+        {
+            question: "Can I use blynQe for free?",
+            answer: "Yes. Connection should be accessible. Our 'Guest' membership allows you to match and message, while paid plans offer enhanced intent signals."
+        },
+        {
+            question: "What is 'Intentional Mode'?",
+            answer: "A feature that pauses your visibility in the feed while you focus on existing matches. We encourage stopping the swipe cycle to build real connections."
+        }
     ];
 
-    const faqs = {
-        general: [
-            {
-                question: "What is blynQe?",
-                answer: "blynQe is a human-centered dating app for meaningful relationships."
-            },
-            {
-                question: "How is blynQe different?",
-                answer: "We use value-based matching for deeper compatibility."
-            },
-            {
-                question: "Is it available in my country?",
-                answer: "blynQe is available in 50+ countries worldwide."
-            }
-        ],
-        account: [
-            {
-                question: "How do I create an account?",
-                answer: "Download the app and follow the guided profile creation."
-            },
-            {
-                question: "Can I have multiple accounts?",
-                answer: "No, each person is limited to one account."
-            },
-            {
-                question: "How do I delete my account?",
-                answer: "Go to Settings > Account > Delete Account."
-            }
-        ],
-        matching: [
-            {
-                question: "How does matching work?",
-                answer: "Our algorithm considers values, communication style, and goals."
-            },
-            {
-                question: "Why am I not getting matches?",
-                answer: "Complete your profile fully and be active on the app."
-            },
-            {
-                question: "Can I undo a swipe?",
-                answer: "Premium and VIP members can undo their last swipe."
-            }
-        ],
-        billing: [
-            {
-                question: "What payment methods?",
-                answer: "We accept cards, PayPal, Apple Pay, and Google Pay."
-            },
-            {
-                question: "Can I cancel anytime?",
-                answer: "Yes, cancel from account settings with no penalty."
-            },
-            {
-                question: "Do you offer refunds?",
-                answer: "7-day money-back guarantee for first-time subscribers."
-            }
-        ]
-    };
-
     return (
-        <div className="min-h-screen pt-24 lg:pt-32 pb-16 lg:pb-20 bg-brand-bg">
-            <div className="max-w-4xl mx-auto px-4 lg:px-6">
-                {/* Header */}
-                <div className="text-center mb-10 lg:mb-16">
-                    <span className="text-brand-orange font-bold tracking-[0.2em] uppercase text-xs lg:text-sm mb-3 block">
-                        Help Center
-                    </span>
-                    <h1 className="text-4xl lg:text-8xl font-black text-brand-dark tracking-tight mb-3 lg:mb-6">
-                        FAQ
-                    </h1>
-                    <p className="text-base lg:text-xl text-brand-grey">
-                        Everything you need to know.
-                    </p>
+        <div ref={containerRef} className="min-h-screen bg-brand-bg relative overflow-hidden font-sans pb-20">
+            {/* Oversized Background Text */}
+            <div className="fixed inset-0 pointer-events-none z-0 flex flex-col justify-start py-20 overflow-hidden">
+                <motion.div style={{ y: y1, opacity: 0.03 }} className="text-[20vw] leading-none font-black text-brand-dark whitespace-nowrap ml-[-2vw]">
+                    ANSWERS
+                </motion.div>
+            </div>
+
+            <div className="relative z-10 max-w-5xl mx-auto px-6 pt-32 lg:pt-40">
+                {/* Minimalist Header */}
+                <div className="text-center mb-24 lg:mb-32">
+                    <motion.span
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8 }}
+                        className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-8 block"
+                    >
+                        Support & Clarity
+                    </motion.span>
+                    <motion.h1
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.2 }}
+                        className="text-5xl lg:text-7xl font-thin text-brand-dark leading-[1] tracking-tight"
+                    >
+                        Common <br />
+                        <span className="font-bold text-brand-orange">questions.</span>
+                    </motion.h1>
                 </div>
 
-                {/* Category Tabs */}
-                <div className="flex flex-wrap justify-center gap-2 lg:gap-3 mb-8 lg:mb-12">
-                    {categories.map((cat) => (
-                        <button
-                            key={cat.id}
-                            onClick={() => { setActiveCategory(cat.id); setOpenIndex(null); }}
-                            className={`px-4 lg:px-6 py-2 lg:py-3 rounded-full font-bold text-xs lg:text-sm transition-all ${activeCategory === cat.id
-                                    ? 'bg-brand-orange text-white'
-                                    : 'bg-white text-brand-dark hover:bg-brand-orange-light'
-                                }`}
-                        >
-                            {cat.name}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Accordion */}
-                <div className="space-y-3 lg:space-y-4">
-                    {faqs[activeCategory].map((faq, index) => (
-                        <div
+                {/* Quiet Luxury Accordion */}
+                <div className="space-y-4">
+                    {faqs.map((faq, index) => (
+                        <motion.div
                             key={index}
-                            className="bg-white rounded-xl lg:rounded-2xl overflow-hidden border border-brand-orange/5"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: index * 0.1 }}
+                            className="group border-b border-brand-dark/5 last:border-0"
                         >
                             <button
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
-                                className="w-full flex items-center justify-between p-4 lg:p-6 text-left"
+                                className="w-full flex items-center justify-between py-8 lg:py-10 text-left"
                             >
-                                <span className="text-sm lg:text-lg font-bold text-brand-dark pr-4">{faq.question}</span>
-                                <ChevronDown
-                                    className={`w-5 h-5 lg:w-6 lg:h-6 text-brand-orange shrink-0 transition-transform ${openIndex === index ? 'rotate-180' : ''
-                                        }`}
-                                />
+                                <span className={`text-xl lg:text-3xl font-light transition-colors duration-500 ${openIndex === index ? 'text-brand-orange' : 'text-brand-dark group-hover:text-brand-grey'
+                                    }`}>
+                                    {faq.question}
+                                </span>
+                                <span className={`relative flex items-center justify-center w-8 h-8 transition-transform duration-500 ${openIndex === index ? 'rotate-180' : 'rotate-0'
+                                    }`}>
+                                    <ChevronDown className={`w-6 h-6 ${openIndex === index ? 'text-brand-orange' : 'text-brand-dark'}`} />
+                                </span>
                             </button>
-                            {openIndex === index && (
-                                <div className="px-4 lg:px-6 pb-4 lg:pb-6 text-brand-grey text-sm lg:text-base leading-relaxed border-t border-brand-orange/5 pt-3 lg:pt-4">
-                                    {faq.answer}
-                                </div>
-                            )}
-                        </div>
+
+                            <AnimatePresence>
+                                {openIndex === index && (
+                                    <motion.div
+                                        initial={{ height: 0, opacity: 0 }}
+                                        animate={{ height: "auto", opacity: 1 }}
+                                        exit={{ height: 0, opacity: 0 }}
+                                        transition={{ duration: 0.5, ease: [0.04, 0.62, 0.23, 0.98] }}
+                                        className="overflow-hidden"
+                                    >
+                                        <div className="pb-10 text-lg text-brand-grey font-light leading-relaxed max-w-3xl">
+                                            {faq.answer}
+                                        </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </motion.div>
                     ))}
                 </div>
 
-                {/* Contact CTA */}
-                <div className="mt-12 lg:mt-16 text-center bg-brand-orange-light p-8 lg:p-12 rounded-2xl lg:rounded-[3rem]">
-                    <h3 className="text-xl lg:text-2xl font-bold text-brand-dark mb-3 lg:mb-4">Still have questions?</h3>
-                    <p className="text-brand-grey text-sm lg:text-base mb-4 lg:mb-6">Our support team is happy to help.</p>
+                {/* Minimal Contact CTA */}
+                <motion.div
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.2 }}
+                    className="mt-32 text-center"
+                >
+                    <p className="text-brand-grey text-lg font-light mb-8">
+                        Need more specific guidance?
+                    </p>
                     <a
                         href="mailto:support@blynqe.com"
-                        className="inline-block bg-brand-orange text-white px-8 lg:px-10 py-3 lg:py-4 rounded-xl lg:rounded-2xl font-bold text-sm lg:text-base hover:scale-105 transition-all"
+                        className="inline-flex items-center gap-3 text-brand-dark font-bold text-lg border-b border-brand-dark pb-1 hover:text-brand-orange hover:border-brand-orange transition-all duration-300"
                     >
-                        Contact Support
+                        <MessageCircle className="w-5 h-5" />
+                        Contact Concierge
                     </a>
-                </div>
+                </motion.div>
             </div>
         </div>
     );

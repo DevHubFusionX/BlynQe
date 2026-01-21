@@ -1,72 +1,111 @@
-import { Star, Quote } from 'lucide-react';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Quote, ArrowRight } from 'lucide-react';
 
 const TestimonialsSection = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
   const testimonials = [
     {
       name: "Sarah & Mike",
-      image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=200&h=200&fit=crop",
-      text: "We matched on blynQe 6 months ago and now we're engaged!",
-      rating: 5,
-      tag: "Engaged"
+      location: "New York, USA",
+      quote: "We weren't looking for just anyone. We were looking for someone who understood our quiet moments. blynQe found that alignment.",
+      image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=400&h=400&fit=crop"
     },
     {
-      name: "Emily Chen",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop",
-      text: "Finally, a dating app that focuses on real connections.",
-      rating: 5,
-      tag: "Found Love"
+      name: "Lucas & Elena",
+      location: "Berlin, Germany",
+      quote: "The intentionality of the platform is palpable. No noise, just a clear path to the person I was meant to meet.",
+      image: "https://images.unsplash.com/photo-1623330188314-8f4645626731?w=400&h=400&fit=crop"
     },
     {
-      name: "David & Lisa",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop",
-      text: "The verification process made me feel safe.",
-      rating: 5,
-      tag: "Perfect Match"
+      name: "David",
+      location: "London, UK",
+      quote: "I was tired of the games. blynQe offered a dignified way to date, respectful of my time and my values.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
     }
   ];
 
   return (
-    <section className="py-16 lg:py-32 bg-white relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-12 lg:mb-20">
-          <span className="text-brand-red font-bold tracking-widest uppercase text-xs lg:text-sm mb-3 block">
-            Real Stories
-          </span>
-          <h2 className="text-3xl lg:text-7xl font-bold text-brand-dark tracking-tight">
-            Success <span className="text-brand-orange">Stories</span>
-          </h2>
+    <section ref={containerRef} className="relative py-32 lg:py-48 bg-brand-bg font-sans overflow-hidden">
+      {/* Oversized Background Text */}
+      <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-center items-end py-20 overflow-hidden mix-blend-multiply opacity-[0.03]">
+        <motion.div style={{ y: y1 }} className="text-[25vw] leading-none font-black text-brand-dark whitespace-nowrap mr-[-2vw]">
+          STORIES
+        </motion.div>
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6">
+        <div className="flex flex-col lg:flex-row items-end justify-between mb-24 lg:mb-32">
+          <div className="max-w-2xl">
+            <motion.span
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-8 block"
+            >
+              Real Connections
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-5xl lg:text-7xl font-thin text-brand-dark leading-[1] tracking-tight"
+            >
+              Voices from the <br />
+              <span className="font-bold text-brand-orange">community.</span>
+            </motion.h2>
+          </div>
+
+          <motion.button
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="hidden lg:flex items-center gap-2 text-brand-dark font-bold uppercase tracking-widest text-xs hover:text-brand-orange transition-colors"
+          >
+            Read all stories <ArrowRight className="w-4 h-4" />
+          </motion.button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        {/* Editorial Slider Layout */}
+        <div className="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:overflow-visible lg:grid lg:grid-cols-3 lg:gap-12 lg:mx-0 lg:px-0">
           {testimonials.map((testimonial, index) => (
-            <div key={index} className="group bg-brand-orange-light/50 p-6 lg:p-10 rounded-2xl lg:rounded-[3rem] border border-brand-orange/5 hover:bg-white hover:shadow-2xl hover:shadow-brand-orange/10 transition-all duration-500 relative">
-              <Quote className="absolute top-6 right-6 lg:top-8 lg:right-8 w-8 h-8 lg:w-12 lg:h-12 text-brand-orange/10 group-hover:text-brand-orange/20 transition-colors" />
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10%" }}
+              transition={{ duration: 0.8, delay: index * 0.2 }}
+              className="min-w-[85vw] md:min-w-[60vw] lg:min-w-0 snap-center rounded-[2rem] bg-white p-8 lg:p-12 shadow-xl shadow-brand-dark/5 flex flex-col justify-between h-full relative group border border-transparent hover:border-brand-orange/10 transition-colors"
+            >
+              <Quote className="absolute top-8 right-8 w-12 h-12 text-brand-orange/10 group-hover:text-brand-orange/30 transition-colors duration-500" />
 
-              <div className="flex items-center gap-4 mb-6 lg:mb-8">
-                <div className="relative">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-14 h-14 lg:w-20 lg:h-20 rounded-xl lg:rounded-2xl object-cover ring-4 ring-white shadow-lg"
-                  />
-                  <div className="absolute -bottom-1 -right-1 lg:-bottom-2 lg:-right-2 bg-brand-orange text-white text-[8px] lg:text-[10px] font-bold px-2 py-1 rounded-lg uppercase tracking-wider">
-                    {testimonial.tag}
+              <div className="mb-8">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-14 h-14 rounded-full overflow-hidden border border-brand-dark/10">
+                    <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-brand-dark text-lg">{testimonial.name}</div>
+                    <div className="text-brand-grey text-xs uppercase tracking-widest">{testimonial.location}</div>
                   </div>
                 </div>
-                <div>
-                  <h4 className="font-bold text-brand-dark text-base lg:text-xl">{testimonial.name}</h4>
-                  <div className="flex gap-0.5 mt-1">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 lg:w-4 lg:h-4 fill-brand-orange text-brand-orange" />
-                    ))}
-                  </div>
-                </div>
+                <p className="text-xl lg:text-2xl font-light text-brand-dark leading-relaxed italic">
+                  "{testimonial.quote}"
+                </p>
               </div>
 
-              <p className="text-brand-grey text-sm lg:text-lg leading-relaxed italic">
-                "{testimonial.text}"
-              </p>
-            </div>
+              <div className="h-1 w-12 bg-brand-orange/20 rounded-full group-hover:w-full group-hover:bg-brand-orange transition-all duration-700" />
+            </motion.div>
           ))}
         </div>
       </div>

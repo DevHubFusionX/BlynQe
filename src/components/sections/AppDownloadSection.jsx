@@ -1,83 +1,130 @@
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { Apple, Play } from 'lucide-react';
+
 const AppDownloadSection = () => {
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+
     return (
-        <section id="app-download" className="py-16 lg:py-32 bg-brand-dark relative overflow-hidden">
-            {/* Background Elements */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-1/4 left-0 w-[300px] lg:w-[600px] h-[300px] lg:h-[600px] bg-brand-orange/10 rounded-full blur-[100px] lg:blur-[150px]" />
-                <div className="absolute bottom-0 right-0 w-[200px] lg:w-[500px] h-[200px] lg:h-[500px] bg-brand-red/10 rounded-full blur-[100px] lg:blur-[150px]" />
+        <section ref={containerRef} id="app-download" className="relative py-32 lg:py-48 bg-brand-bg font-sans overflow-hidden">
+            {/* Oversized Background Text */}
+            <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-end items-end py-20 overflow-hidden mix-blend-multiply opacity-[0.03]">
+                <motion.div style={{ y: y1 }} className="text-[25vw] leading-none font-black text-brand-dark whitespace-nowrap mr-[-2vw]">
+                    ACCESS
+                </motion.div>
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-                    {/* Content Side */}
-                    <div className="space-y-8 text-center lg:text-left order-2 lg:order-1">
-                        <div className="space-y-4">
-                            <span className="text-brand-orange font-bold tracking-[0.2em] uppercase text-xs lg:text-sm">
-                                Take blynQe Everywhere
-                            </span>
-                            <h2 className="text-3xl lg:text-7xl font-black text-white leading-[0.95] tracking-tight">
-                                Download the <span className="text-brand-orange">app.</span>
-                            </h2>
-                            <p className="text-base lg:text-xl text-gray-400 font-medium leading-relaxed max-w-lg mx-auto lg:mx-0">
-                                Your next meaningful connection is just a tap away.
-                            </p>
-                        </div>
+            <div className="relative z-10 max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 
-                        {/* Download Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-                            <a href="#" className="group flex items-center justify-center gap-3 bg-white px-6 py-3 rounded-xl hover:scale-105 transition-all shadow-xl">
-                                <svg viewBox="0 0 24 24" className="w-6 h-6 text-brand-dark fill-current">
-                                    <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z" />
-                                </svg>
+                    {/* Cinematic Mockup */}
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                        className="relative flex justify-center order-2 lg:order-1"
+                    >
+                        <div className="relative w-[300px] lg:w-[400px] aspect-[1/2] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-brand-dark/5">
+                            <img
+                                src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800&h=1600&fit=crop"
+                                alt="App Interface"
+                                className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
+
+                            {/* Floating "Live" element */}
+                            <motion.div
+                                initial={{ y: 20, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                transition={{ delay: 0.8, duration: 0.8 }}
+                                className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50"
+                            >
+                                <div className="flex items-center gap-3 mb-2">
+                                    <div className="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center text-white text-xs font-bold">EM</div>
+                                    <div>
+                                        <div className="text-xs font-bold text-brand-dark">Emma</div>
+                                        <div className="text-[10px] text-brand-grey uppercase tracking-wider">Just matched</div>
+                                    </div>
+                                </div>
+                                <div className="text-sm font-light text-brand-dark italic">
+                                    "This feels different. In a good way."
+                                </div>
+                            </motion.div>
+                        </div>
+                    </motion.div>
+
+                    {/* Minimal Content */}
+                    <div className="order-1 lg:order-2 text-center lg:text-left">
+                        <motion.span
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8 }}
+                            className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-8 block"
+                        >
+                            Everywhere You Are
+                        </motion.span>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.8, delay: 0.2 }}
+                            className="text-5xl lg:text-7xl font-thin text-brand-dark leading-[1] tracking-tight mb-8"
+                        >
+                            Your connection, <br />
+                            <span className="font-bold text-brand-orange">in your pocket.</span>
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                            className="text-xl text-brand-grey font-light leading-relaxed mb-12 max-w-md mx-auto lg:mx-0"
+                        >
+                            Seamlessly transition from introspection to interaction. Experience the full depth of blynQe on iOS and Android.
+                        </motion.p>
+
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                            <motion.a
+                                href="#"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.6 }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex items-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-xl shadow-xl hover:bg-brand-orange transition-colors duration-300"
+                            >
+                                <Apple className="w-6 h-6 fill-current" />
                                 <div className="text-left">
-                                    <div className="text-[9px] text-gray-500 uppercase font-bold tracking-wider">Download on</div>
-                                    <div className="text-lg font-black text-brand-dark -mt-1">App Store</div>
+                                    <div className="text-[10px] uppercase font-bold tracking-wider opacity-60">Download on the</div>
+                                    <div className="text-lg font-bold leading-none">App Store</div>
                                 </div>
-                            </a>
+                            </motion.a>
 
-                            <a href="#" className="group flex items-center justify-center gap-3 bg-white/10 backdrop-blur-sm border border-white/10 px-6 py-3 rounded-xl hover:bg-white/20 transition-all">
-                                <svg viewBox="0 0 24 24" className="w-6 h-6 text-white fill-current">
-                                    <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 01-.61-.92V2.734a1 1 0 01.609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 010 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z" />
-                                </svg>
+                            <motion.a
+                                href="#"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.7 }}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                className="flex items-center gap-3 bg-white text-brand-dark border border-brand-dark/10 px-8 py-4 rounded-xl hover:border-brand-orange/50 transition-colors duration-300"
+                            >
+                                <Play className="w-6 h-6 fill-current" />
                                 <div className="text-left">
-                                    <div className="text-[9px] text-gray-400 uppercase font-bold tracking-wider">Get it on</div>
-                                    <div className="text-lg font-black text-white -mt-1">Google Play</div>
+                                    <div className="text-[10px] uppercase font-bold tracking-wider opacity-60">Get it on</div>
+                                    <div className="text-lg font-bold leading-none">Google Play</div>
                                 </div>
-                            </a>
-                        </div>
-
-                        {/* Stats */}
-                        <div className="flex items-center gap-6 lg:gap-12 justify-center lg:justify-start pt-4">
-                            <div className="text-center lg:text-left">
-                                <div className="text-2xl lg:text-4xl font-black text-white">4.9</div>
-                                <div className="text-[10px] lg:text-xs text-gray-500 uppercase tracking-widest font-bold">Rating</div>
-                            </div>
-                            <div className="w-px h-8 lg:h-12 bg-white/10" />
-                            <div className="text-center lg:text-left">
-                                <div className="text-2xl lg:text-4xl font-black text-brand-orange">500K+</div>
-                                <div className="text-[10px] lg:text-xs text-gray-500 uppercase tracking-widest font-bold">Downloads</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Phone Mockup Side */}
-                    <div className="relative flex justify-center order-1 lg:order-2">
-                        <div className="relative">
-                            <div className="w-[200px] lg:w-[320px] h-[400px] lg:h-[650px] bg-gradient-to-b from-gray-800 to-gray-900 rounded-[2rem] lg:rounded-[3rem] p-2 lg:p-3 shadow-2xl">
-                                <div className="w-full h-full bg-brand-dark rounded-[1.5rem] lg:rounded-[2.5rem] overflow-hidden relative">
-                                    <img
-                                        src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=400&h=800&fit=crop"
-                                        alt="blynQe App Preview"
-                                        className="w-full h-full object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent" />
-                                </div>
-                            </div>
-
-                            {/* Floating Badge - Hidden on mobile */}
-                            <div className="hidden lg:block absolute -top-6 -right-6 bg-brand-orange text-white px-6 py-3 rounded-2xl font-bold shadow-xl rotate-12">
-                                #1 Dating App
-                            </div>
+                            </motion.a>
                         </div>
                     </div>
                 </div>
