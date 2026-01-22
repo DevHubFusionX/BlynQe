@@ -2,6 +2,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download, ArrowRight } from 'lucide-react';
+import logo from '../assets/logo.svg';
 
 const Navbar = () => {
   const location = useLocation();
@@ -46,25 +47,20 @@ const Navbar = () => {
       className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
     >
       {/* Pill Container */}
-      <div className={`relative bg-white/80 backdrop-blur-2xl rounded-full border transition-all duration-500 ${scrolled
-          ? 'shadow-2xl shadow-brand-dark/15 border-white/50 py-2 px-3'
-          : 'shadow-xl shadow-brand-dark/5 border-brand-dark/5 py-3 px-4'
+      <div className={`relative bg-brand-peach/80 backdrop-blur-3xl rounded-full border transition-all duration-500 ${scrolled
+        ? 'shadow-2xl shadow-brand-dark/15 border-brand-orange/20 py-2 px-3'
+        : 'shadow-xl shadow-brand-dark/5 border-brand-orange/10 py-3 px-4'
         }`}>
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 pl-2 group">
             <motion.div
-              whileHover={{ scale: 1.05, rotate: 5 }}
+              whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              className="w-10 h-10 bg-gradient-to-br from-brand-orange to-brand-orange/80 rounded-full flex items-center justify-center shadow-lg shadow-brand-orange/20"
+              className="h-10 flex items-center"
             >
-              <svg viewBox="0 0 24 24" className="w-5 h-5 text-white fill-current">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-              </svg>
+              <img src={logo} alt="blynQe Logo" className="h-full w-auto" />
             </motion.div>
-            <span className="text-xl font-thin tracking-tight text-brand-dark">
-              blyn<span className="font-bold">Qe</span>
-            </span>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -76,8 +72,8 @@ const Navbar = () => {
                 className="relative px-5 py-2 font-medium text-sm transition-all group"
               >
                 <span className={`relative z-10 transition-colors duration-300 ${isActive(link.path)
-                    ? 'text-brand-orange'
-                    : 'text-brand-grey hover:text-brand-dark'
+                  ? 'text-brand-orange'
+                  : 'text-brand-grey hover:text-brand-dark'
                   }`}>
                   {link.name}
                 </span>
@@ -147,7 +143,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.98 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden mt-4 bg-white/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-brand-dark/10 border border-brand-dark/5 p-6 overflow-hidden"
+            className="lg:hidden mt-4 bg-brand-peach/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-brand-dark/10 border border-brand-orange/10 p-6 overflow-hidden"
           >
             <div className="flex flex-col gap-2">
               {navLinks.map((link, index) => (
@@ -161,8 +157,8 @@ const Navbar = () => {
                     to={link.path}
                     onClick={() => setIsOpen(false)}
                     className={`flex items-center justify-between px-5 py-4 rounded-2xl font-medium transition-all ${isActive(link.path)
-                        ? 'bg-brand-orange/10 text-brand-orange'
-                        : 'text-brand-dark hover:bg-brand-bg/50'
+                      ? 'bg-brand-orange/10 text-brand-orange'
+                      : 'text-brand-dark hover:bg-brand-bg/50'
                       }`}
                   >
                     <span>{link.name}</span>

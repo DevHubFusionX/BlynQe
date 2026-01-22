@@ -22,7 +22,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative min-h-screen font-sans overflow-hidden">
+    <section ref={containerRef} className="relative min-h-screen font-sans overflow-hidden pt-12">
       {/* Mobile: Full Background Image */}
       <div
         className="lg:hidden absolute inset-0 z-0"

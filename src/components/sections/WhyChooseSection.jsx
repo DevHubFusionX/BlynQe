@@ -1,294 +1,111 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Heart, Shield, Sparkles, Users, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
+import appShots from '../../assets/appShots.png';
 
 const WhyChooseSection = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -100]);
-
-  const features = [
-    {
-      icon: Users,
-      title: "Human First",
-      subtitle: "Verified Authenticity",
-      description: "Every profile is verified with biometric AI. A community of 100% real people, where trust is the foundation.",
-      image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&h=1000&fit=crop"
-    },
-    {
-      icon: Heart,
-      title: "Deep Intent",
-      subtitle: "Values-Based Matching",
-      description: "Our protocol prioritizes core beliefs over superficial preferences, fostering connections that actually last.",
-      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?w=800&h=1000&fit=crop"
-    },
-    {
-      icon: Shield,
-      title: "Safe Space",
-      subtitle: "Privacy by Design",
-      description: "Security isn't a feature, it's our foundation. End-to-end encryption keeps your journey completely private.",
-      image: "https://images.unsplash.com/photo-1621184455862-c163dfb30e0f?w=800&h=1000&fit=crop"
-    },
-    {
-      icon: Sparkles,
-      title: "Guided Journey",
-      subtitle: "AI Concierge",
-      description: "We don't just match you; we help you connect. Intelligent icebreakers and thoughtful date planning.",
-      image: "https://images.unsplash.com/photo-1522163182402-834f871fd851?w=800&h=1000&fit=crop"
-    }
-  ];
-
   return (
-    <section ref={containerRef} className="relative bg-brand-bg font-sans">
-      {/* Oversized Background Text - Romantic Style */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        <motion.div
-          style={{ y: y1 }}
-          className="absolute top-20 -left-[5vw] text-[15vw] lg:text-[12vw] leading-none font-black text-brand-dark whitespace-nowrap mix-blend-multiply opacity-[0.03]"
-        >
-          AUTHENTIC
-        </motion.div>
-        <motion.div
-          style={{ y: y2 }}
-          className="absolute bottom-40 -right-[5vw] text-[15vw] lg:text-[12vw] leading-none font-black text-brand-dark whitespace-nowrap mix-blend-multiply opacity-[0.03]"
-        >
-          CONNECTION
-        </motion.div>
+    <section id="why-us" className="relative py-24 lg:py-48 bg-gradient-to-b from-brand-bg to-white font-sans overflow-hidden">
+      {/* Immersive background elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-brand-orange/5 rounded-full blur-[150px] mix-blend-multiply" />
+        <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-brand-peach/20 rounded-full blur-[120px]" />
       </div>
 
-      {/* Desktop: Two-Column Sticky Scroll Layout */}
-      <div className="hidden lg:block relative z-10">
-        <div className="flex">
-          {/* Left Column: Sticky Content */}
-          <div className="w-[45%] relative">
-            <div className="sticky top-0 h-screen flex items-center">
-              <div className="px-12 lg:px-20 max-w-xl">
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="space-y-8"
-                >
-                  <motion.span
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.8 }}
-                    className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs border-b border-brand-orange/30 pb-1 inline-block"
-                  >
-                    Our Philosophy
-                  </motion.span>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="flex flex-col items-center text-center mb-20 lg:mb-32">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-[0.2em] mb-8 border border-brand-orange/20">
+              The Interface of Intent
+            </span>
+          </motion.div>
 
-                  <h2 className="text-6xl lg:text-7xl font-thin text-brand-dark leading-[0.95] tracking-tight">
-                    Why we <br />
-                    <span className="font-bold text-brand-orange relative inline-block">
-                      exist.
-                      <svg className="absolute w-full h-3 -bottom-1 left-0 text-brand-orange opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none">
-                        <path d="M0 5 Q 50 10 100 5" stroke="currentColor" strokeWidth="2" fill="none" />
-                      </svg>
-                    </span>
-                  </h2>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            className="text-6xl lg:text-[8rem] font-heading font-bold text-brand-dark leading-[1] mb-10 tracking-[-0.04em]"
+          >
+            How App <br />
+            <span className="text-brand-orange font-thin italic">works.</span>
+          </motion.h2>
 
-                  <p className="text-xl text-brand-grey font-light leading-relaxed max-w-md">
-                    We're building a dating experience where authenticity isn't optional—it's everything. A serene space for two people to find each other.
-                  </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.4 }}
+            className="text-xl lg:text-3xl text-brand-grey font-light leading-relaxed max-w-3xl mb-12"
+          >
+            Flow is for everyone, from freelancers and business owners to young families. <br className="hidden lg:block" />
+            Designed to bridge the gap between digital interaction and real human depth.
+          </motion.p>
 
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6 }}
-                    className="group flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-brand-dark hover:text-brand-orange transition-all duration-300 pt-4"
-                  >
-                    Discover More
-                    <ArrowRight className="w-4 h-4 group-hover:translate-x-2 transition-transform duration-300" />
-                  </motion.button>
-
-                  {/* Floating Stats */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.8, duration: 0.8 }}
-                    className="flex gap-12 pt-8"
-                  >
-                    <div>
-                      <div className="text-4xl font-thin text-brand-dark">100%</div>
-                      <div className="text-[10px] uppercase tracking-widest text-brand-grey font-bold mt-1">Verified Profiles</div>
-                    </div>
-                    <div>
-                      <div className="text-4xl font-thin text-brand-dark">4.9</div>
-                      <div className="text-[10px] uppercase tracking-widest text-brand-grey font-bold mt-1">User Rating</div>
-                    </div>
-                  </motion.div>
-                </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8 }}
+          >
+            <motion.button
+              whileHover={{
+                scale: 1.05,
+                boxShadow: "0 25px 50px -12px rgba(244, 176, 86, 0.4)"
+              }}
+              whileTap={{ scale: 0.98 }}
+              className="group flex items-center gap-4 bg-[#F4B056] text-brand-dark px-12 py-6 rounded-full font-bold text-xl shadow-xl transition-all duration-300"
+            >
+              <span>Explore blynQe</span>
+              <div className="w-8 h-8 rounded-full bg-brand-dark/10 flex items-center justify-center group-hover:bg-brand-dark transition-all">
+                <ArrowRight className="w-5 h-5 group-hover:text-white transition-colors" />
               </div>
-            </div>
-          </div>
-
-          {/* Right Column: Scrolling Feature Cards */}
-          <div className="w-[55%] py-32 pr-12 lg:pr-20">
-            <div className="space-y-12">
-              {features.map((feature, index) => {
-                const Icon = feature.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 60 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, margin: "-15%" }}
-                    transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    className="group relative"
-                  >
-                    <div className="flex gap-8">
-                      {/* Image Side */}
-                      <div className="w-1/2 relative">
-                        <div className="aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-brand-dark/10">
-                          <img
-                            src={feature.image}
-                            alt={feature.title}
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[1.5s] ease-out"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/50 via-transparent to-transparent opacity-60" />
-                        </div>
-
-                        {/* Floating Number Badge */}
-                        <motion.div
-                          initial={{ opacity: 0, scale: 0.8 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: 0.3, duration: 0.6 }}
-                          className="absolute -top-4 -left-4 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl border border-brand-dark/5"
-                        >
-                          <span className="text-2xl font-thin text-brand-dark">0{index + 1}</span>
-                        </motion.div>
-                      </div>
-
-                      {/* Content Side */}
-                      <div className="w-1/2 flex flex-col justify-center py-8">
-                        <div className="w-12 h-12 rounded-full bg-brand-orange/10 flex items-center justify-center mb-6 group-hover:bg-brand-orange/20 transition-colors duration-500">
-                          <Icon className="w-5 h-5 text-brand-orange" />
-                        </div>
-
-                        <span className="text-brand-grey text-xs uppercase tracking-widest font-bold mb-2">
-                          {feature.subtitle}
-                        </span>
-
-                        <h3 className="text-3xl lg:text-4xl font-thin text-brand-dark mb-4 group-hover:translate-x-2 transition-transform duration-500">
-                          {feature.title}
-                        </h3>
-
-                        <p className="text-brand-grey font-light leading-relaxed border-l-2 border-brand-dark/10 pl-6 group-hover:border-brand-orange transition-colors duration-500">
-                          {feature.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
+
+        {/* Massive Centered Mockup */}
+        <motion.div
+          initial={{ opacity: 0, y: 100, scale: 0.95 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+          className="relative max-w-6xl mx-auto"
+        >
+          <div className="relative rounded-[3rem] p-4 lg:p-8 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
+            <img
+              src={appShots}
+              alt="blynQe App Interface"
+              className="w-full h-auto rounded-[2rem] shadow-2xl scale-[1.02] hover:scale-100 transition-transform duration-[2s]"
+            />
+
+            {/* Glossy overlay effect */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none" />
+          </div>
+
+          {/* Decorative floating elements */}
+          <motion.div
+            animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -top-12 -left-12 w-48 h-48 bg-brand-orange-light/50 backdrop-blur-3xl rounded-full -z-10 border border-white/40 shadow-inner"
+          />
+          <motion.div
+            animate={{ y: [10, -10, 10], rotate: [0, -5, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -bottom-16 -right-16 w-64 h-64 bg-brand-dark/5 backdrop-blur-2xl rounded-full -z-10 border border-brand-dark/5"
+          />
+        </motion.div>
       </div>
 
-      {/* Mobile: Elegant Stacked Layout */}
-      <div className="lg:hidden relative z-10 px-6 py-24">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20 text-center"
-        >
-          <span className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-6 block">
-            Our Philosophy
-          </span>
-          <h2 className="text-5xl font-thin text-brand-dark leading-[0.95] mb-6">
-            Why we <br />
-            <span className="font-bold text-brand-orange">exist.</span>
-          </h2>
-          <p className="text-lg text-brand-grey font-light leading-relaxed max-w-md mx-auto">
-            A dating experience where authenticity isn't optional—it's everything.
-          </p>
-        </motion.div>
-
-        {/* Feature Cards */}
-        <div className="space-y-16">
-          {features.map((feature, index) => {
-            const Icon = feature.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-10%" }}
-                transition={{ duration: 0.8 }}
-                className="relative"
-              >
-                {/* Image */}
-                <div className="relative mb-8">
-                  <div className="aspect-[4/3] rounded-[2rem] overflow-hidden shadow-xl">
-                    <img
-                      src={feature.image}
-                      alt={feature.title}
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
-                  </div>
-
-                  {/* Number Badge */}
-                  <div className="absolute -bottom-4 left-6 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                    <span className="text-xl font-thin text-brand-dark">0{index + 1}</span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="pl-4 border-l-2 border-brand-orange/30">
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-full bg-brand-orange/10 flex items-center justify-center">
-                      <Icon className="w-4 h-4 text-brand-orange" />
-                    </div>
-                    <span className="text-brand-grey text-xs uppercase tracking-widest font-bold">
-                      {feature.subtitle}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl font-semibold text-brand-dark mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-brand-grey leading-relaxed">
-                    {feature.description}
-                  </p>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Mobile Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="flex justify-center gap-16 mt-20 pt-10 border-t border-brand-dark/10"
-        >
-          <div className="text-center">
-            <div className="text-3xl font-thin text-brand-dark">100%</div>
-            <div className="text-[10px] uppercase tracking-widest text-brand-grey font-bold mt-1">Verified</div>
-          </div>
-          <div className="text-center">
-            <div className="text-3xl font-thin text-brand-dark">4.9</div>
-            <div className="text-[10px] uppercase tracking-widest text-brand-grey font-bold mt-1">Rating</div>
-          </div>
-        </motion.div>
+      {/* Oversized Signature Background Text */}
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-[0.02] pointer-events-none select-none translate-y-1/2">
+        <h3 className="text-[30vw] font-black leading-none text-brand-dark whitespace-nowrap">
+          SYSTEM
+        </h3>
       </div>
     </section>
   );

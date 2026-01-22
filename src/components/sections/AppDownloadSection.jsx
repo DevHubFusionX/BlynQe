@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Apple, Play } from 'lucide-react';
+import blyneDevice from '../../assets/blyne-device.png';
 
 const AppDownloadSection = () => {
     const containerRef = useRef(null);
@@ -31,13 +32,12 @@ const AppDownloadSection = () => {
                         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                         className="relative flex justify-center order-2 lg:order-1"
                     >
-                        <div className="relative w-[300px] lg:w-[400px] aspect-[1/2] rounded-[3rem] overflow-hidden shadow-2xl border-4 border-brand-dark/5">
+                        <div className="relative w-[300px] lg:w-[400px] aspect-[1/2] overflow-hidden drop-shadow-2xl">
                             <img
-                                src="https://images.unsplash.com/photo-1616348436168-de43ad0db179?w=800&h=1600&fit=crop"
-                                alt="App Interface"
-                                className="w-full h-full object-cover"
+                                src={blyneDevice}
+                                alt="blynQe App Interface"
+                                className="w-full h-full object-contain"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/40 via-transparent to-transparent" />
 
                             {/* Floating "Live" element */}
                             <motion.div
