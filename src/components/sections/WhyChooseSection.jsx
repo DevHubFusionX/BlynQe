@@ -74,9 +74,9 @@ const WhyChooseSection = () => {
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-6xl mx-auto"
+          className="relative max-w-6xl mx-auto -mx-6 md:mx-auto"
         >
-          <div className="relative rounded-[3rem] p-4 lg:p-8 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
+          <div className="relative rounded-3xl lg:rounded-[3rem] p-1 lg:p-8 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
             <img
               src={appShots}
               alt="blynQe App Interface"
