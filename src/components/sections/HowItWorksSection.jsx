@@ -71,44 +71,53 @@ const HowItWorksSection = () => {
           </motion.p>
         </div>
 
-        {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
-          {steps.map((step, index) => {
-            const Icon = step.icon;
-            return (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1, duration: 0.8 }}
-                whileHover={{ y: -10, transition: { duration: 0.3 } }}
-                className={`group relative p-8 lg:p-10 rounded-[2.5rem] border border-brand-dark/5 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-brand-dark/5 ${step.className}`}
-              >
-                <div className="relative z-10">
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-lg group-hover:bg-brand-orange group-hover:text-white transition-all duration-500">
-                      <Icon className="w-6 h-6" />
+        {/* Bento Grid / Mobile Carousel */}
+        <div className="relative">
+          <div className="flex md:grid md:grid-cols-3 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory scrollbar-hide -mx-6 px-6 md:mx-0 md:px-0 pb-8 md:pb-0">
+            {steps.map((step, index) => {
+              const Icon = step.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.8 }}
+                  whileHover={{ y: -10, transition: { duration: 0.3 } }}
+                  className={`group relative p-8 lg:p-10 rounded-[2.5rem] border border-brand-dark/5 backdrop-blur-xl transition-all duration-500 flex flex-col justify-between overflow-hidden shadow-sm hover:shadow-2xl hover:shadow-brand-dark/5 snap-center min-w-[85vw] md:min-w-0 ${step.className}`}
+                >
+                  <div className="relative z-10">
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="w-14 h-14 rounded-2xl bg-white flex items-center justify-center shadow-lg group-hover:bg-brand-orange group-hover:text-white transition-all duration-500">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                      <span className="text-4xl font-black opacity-5 group-hover:opacity-10 transition-opacity">
+                        {step.number}
+                      </span>
                     </div>
-                    <span className="text-4xl font-black opacity-5 group-hover:opacity-10 transition-opacity">
-                      {step.number}
-                    </span>
+
+                    <h3 className="text-2xl lg:text-3xl font-bold text-brand-dark mb-4 group-hover:text-brand-orange transition-colors">
+                      {step.title}
+                    </h3>
+
+                    <p className="text-brand-grey font-light leading-relaxed group-hover:text-brand-dark transition-colors">
+                      {step.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-2xl lg:text-3xl font-bold text-brand-dark mb-4 group-hover:text-brand-orange transition-colors">
-                    {step.title}
-                  </h3>
+                  {/* Decorative background circle */}
+                  <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-orange/5 rounded-full blur-2xl group-hover:bg-brand-orange/10 transition-all" />
+                </motion.div>
+              );
+            })}
+          </div>
 
-                  <p className="text-brand-grey font-light leading-relaxed group-hover:text-brand-dark transition-colors">
-                    {step.description}
-                  </p>
-                </div>
-
-                {/* Decorative background circle */}
-                <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-brand-orange/5 rounded-full blur-2xl group-hover:bg-brand-orange/10 transition-all" />
-              </motion.div>
-            );
-          })}
+          {/* Mobile Scroll Indicator Indicators */}
+          <div className="flex md:hidden justify-center gap-2 mt-4">
+            {steps.map((_, i) => (
+              <div key={i} className="w-1.5 h-1.5 rounded-full bg-brand-dark/10" />
+            ))}
+          </div>
         </div>
 
         {/* Final CTA Strip */}
