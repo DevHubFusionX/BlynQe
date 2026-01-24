@@ -40,18 +40,18 @@ const Navbar = () => {
   };
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-5xl"
-    >
-      {/* Pill Container */}
-      <div className={`relative bg-brand-peach/80 backdrop-blur-3xl rounded-full border transition-all duration-500 ${scrolled
-        ? 'shadow-2xl shadow-brand-dark/15 border-brand-orange/20 py-2 px-3'
-        : 'shadow-xl shadow-brand-dark/5 border-brand-orange/10 py-3 px-4'
-        }`}>
-        <div className="flex items-center justify-between">
+    <>
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-0 left-0 right-0 z-50"
+      >
+        <div className={`relative bg-brand-peach/80 backdrop-blur-3xl transition-all duration-500 ${scrolled
+          ? 'shadow-2xl shadow-brand-dark/15 py-2 px-6'
+          : 'shadow-xl shadow-brand-dark/5 py-3 px-6'
+          }`}>
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 pl-2 group">
             <motion.div
@@ -135,56 +135,77 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      </motion.nav>
+
+      {/* Mobile Sidebar */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.98 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="lg:hidden mt-4 bg-brand-peach/95 backdrop-blur-2xl rounded-3xl shadow-2xl shadow-brand-dark/10 border border-brand-orange/10 p-6 overflow-hidden"
-          >
-            <div className="flex flex-col gap-2">
-              {navLinks.map((link, index) => (
-                <motion.div
-                  key={link.path}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                >
-                  <Link
-                    to={link.path}
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 bg-brand-dark/50 backdrop-blur-sm z-40 lg:hidden"
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="fixed top-0 right-0 h-full w-[280px] bg-brand-peach/95 backdrop-blur-2xl shadow-2xl z-50 lg:hidden"
+            >
+              <div className="flex flex-col h-full p-6">
+                <div className="flex justify-end mb-8">
+                  <button
                     onClick={() => setIsOpen(false)}
-                    className={`flex items-center justify-between px-5 py-4 rounded-2xl font-medium transition-all ${isActive(link.path)
-                      ? 'bg-brand-orange/10 text-brand-orange'
-                      : 'text-brand-dark hover:bg-brand-bg/50'
-                      }`}
+                    className="p-2 text-brand-dark hover:bg-brand-bg/50 rounded-full transition-colors"
                   >
-                    <span>{link.name}</span>
-                    <ArrowRight className={`w-4 h-4 transition-opacity ${isActive(link.path) ? 'opacity-100' : 'opacity-0'
-                      }`} />
-                  </Link>
-                </motion.div>
-              ))}
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
 
-              <div className="border-t border-brand-dark/5 my-3" />
+                <div className="flex flex-col gap-2 flex-1">
+                  {navLinks.map((link, index) => (
+                    <motion.div
+                      key={link.path}
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05 }}
+                    >
+                      <Link
+                        to={link.path}
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center justify-between px-5 py-4 rounded-2xl font-medium transition-all ${isActive(link.path)
+                          ? 'bg-brand-orange/10 text-brand-orange'
+                          : 'text-brand-dark hover:bg-brand-bg/50'
+                          }`}
+                      >
+                        <span>{link.name}</span>
+                        <ArrowRight className={`w-4 h-4 transition-opacity ${isActive(link.path) ? 'opacity-100' : 'opacity-0'
+                          }`} />
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
 
-              <motion.button
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                onClick={handleDownloadClick}
-                className="flex items-center justify-center gap-3 px-5 py-4 rounded-2xl font-medium bg-brand-dark text-white hover:bg-brand-orange transition-colors"
-              >
-                <Download className="w-4 h-4" />
-                Download App
-              </motion.button>
-            </div>
-          </motion.div>
+                <motion.button
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  onClick={handleDownloadClick}
+                  className="flex items-center justify-center gap-3 px-5 py-4 rounded-2xl font-medium bg-brand-dark text-white hover:bg-brand-orange transition-colors mt-auto"
+                >
+                  <Download className="w-4 h-4" />
+                  Download App
+                </motion.button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
-    </motion.nav>
+    </>
   );
 };
 
