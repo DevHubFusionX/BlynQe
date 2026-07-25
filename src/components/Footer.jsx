@@ -29,7 +29,8 @@ const Footer = () => {
     ],
     legal: [
       { name: 'Privacy', path: '/privacy' },
-      { name: 'Terms', path: '/terms' }
+      { name: 'Terms', path: '/terms' },
+      { name: 'Guidelines', path: '/community-guidelines' }
     ]
   };
 
@@ -88,7 +89,7 @@ const Footer = () => {
             </div>
 
             {/* Links Columns */}
-            {Object.entries(footerLinks).map(([title, links], columnIndex) => (
+            {Object.entries(footerLinks).map(([title, links]) => (
               <div key={title} className="lg:col-span-2 space-y-6">
                 <h4 className="text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">
                   {title}
