@@ -1,16 +1,6 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ChevronRight, Heart } from 'lucide-react';
 
 const CTASection = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-
   const scrollToDownload = () => {
     const downloadSection = document.getElementById('app-download');
     if (downloadSection) {
@@ -19,52 +9,88 @@ const CTASection = () => {
   };
 
   return (
-    <section ref={containerRef} className="relative py-48 lg:py-64 bg-white font-sans overflow-hidden">
-      {/* Oversized Background Text */}
-      <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-center items-center py-20 overflow-hidden mix-blend-multiply opacity-[0.03]">
-        <motion.div style={{ y: y1 }} className="text-[30vw] leading-none font-black text-brand-dark whitespace-nowrap">
-          BEGIN
-        </motion.div>
-      </div>
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <span className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-10 block">
-            The Final Step
-          </span>
-
-          <h2 className="text-6xl lg:text-8xl font-thin text-brand-dark leading-[0.9] tracking-tight mb-12">
-            Your story <br />
-            <span className="font-bold text-brand-orange">starts here.</span>
-          </h2>
-
-          <p className="text-xl lg:text-2xl text-brand-grey font-light leading-relaxed mb-16 max-w-xl mx-auto">
-            Join a community of 500,000+ people who have decided that <br className="hidden lg:block" />
-            connection deserves to be real.
-          </p>
-
-          <motion.button
-            onClick={scrollToDownload}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center justify-center gap-4 bg-brand-dark text-white text-lg font-bold uppercase tracking-widest px-12 py-6 rounded-full overflow-hidden shadow-2xl hover:bg-brand-orange transition-colors duration-500"
-          >
-            <span className="relative z-10">Download Now</span>
-            <ArrowRight className="w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
-            <div className="absolute inset-0 bg-brand-orange opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          </motion.button>
-
-          <div className="mt-16 flex justify-center gap-12 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-            {['Vogue', 'WIRED', 'TechCrunch', 'GQ'].map((brand, i) => (
-              <span key={i} className="text-xl font-serif font-bold text-brand-dark">{brand}</span>
-            ))}
+    <section className="relative py-24 lg:py-36 bg-white text-brand-dark font-sans overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          
+          {/* Left Column: Heading, Text & Buttons */}
+          <div className="lg:col-span-6 flex flex-col items-start text-left">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#120E0A] leading-tight mb-6">
+              See it running on <br />
+              your phone. Free.
+            </h2>
+            <p className="text-base sm:text-lg text-brand-grey font-light leading-relaxed max-w-xl mb-10">
+              Download the app and complete your profile. We'll match you based on values and guide you through real workflows inside the app. No superficial swiping required.
+            </p>
+            
+            {/* Action Buttons */}
+            <div className="flex flex-wrap items-center gap-6">
+              <button 
+                onClick={scrollToDownload}
+                className="bg-[#FF7A00] hover:bg-[#E06B00] text-white px-7 py-3.5 rounded-full font-semibold text-sm transition-all shadow-md shadow-orange-500/10 cursor-pointer"
+              >
+                Download App &rarr;
+              </button>
+              <button 
+                onClick={scrollToDownload}
+                className="text-brand-dark hover:underline font-semibold text-sm cursor-pointer"
+              >
+                How it works
+              </button>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Right Column: Floating Matchmaking Dialog Box (Mock UI) */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end">
+            <div className="w-full max-w-lg flex flex-col gap-3">
+              
+              {/* Top Pill Strip */}
+              <div className="bg-[#1C1814] text-white p-4 rounded-2xl flex items-center justify-between shadow-xl border border-white/5 cursor-pointer hover:border-white/10 transition-colors">
+                <div className="flex items-center gap-3">
+                  <div className="w-6 h-6 rounded-md bg-[#FF7A00] flex items-center justify-center">
+                    <Heart className="w-3.5 h-3.5 text-white fill-white" />
+                  </div>
+                  <span className="text-sm font-semibold tracking-tight text-white/95">Why did Sophia match with you?</span>
+                </div>
+                <ChevronRight className="w-4 h-4 text-white/40" />
+              </div>
+
+              {/* Detailed Matching Content Box */}
+              <div className="bg-[#1C1814] text-white p-6 rounded-3xl shadow-2xl border border-white/5 flex flex-col gap-6">
+                
+                {/* Core Description Text */}
+                <p className="text-sm text-white/80 font-light leading-relaxed">
+                  Sophia from Brooklyn shares 94% alignment in your core behavioral intake. Her PO (Perspective on Outgoingness) and values scores align perfectly. Both rules in your intentional matching paused to recommend this manual introduction. Nothing else matches this well.
+                </p>
+
+                {/* Interaction Tags/Chips */}
+                <div className="flex flex-wrap gap-2.5">
+                  <button className="bg-white/5 hover:bg-white/10 text-white/90 text-xs px-4 py-2 rounded-full font-medium border border-white/5 transition-colors cursor-pointer">
+                    How values alignment works
+                  </button>
+                  <button className="bg-white/5 hover:bg-white/10 text-white/90 text-xs px-4 py-2 rounded-full font-medium border border-white/5 transition-colors cursor-pointer">
+                    Start guided introduction
+                  </button>
+                </div>
+
+                {/* Divider */}
+                <div className="h-[1px] bg-white/5 w-full" />
+
+                {/* Footer Toolbar */}
+                <div className="flex items-center justify-between">
+                  <span className="text-[10px] text-white/30 uppercase tracking-widest font-semibold">Powered by blynQe</span>
+                  <button className="bg-[#2D2A26] hover:bg-[#3D3A36] text-white text-xs px-4 py-2 rounded-lg font-bold flex items-center gap-1.5 transition-colors cursor-pointer border border-white/5 shadow-md">
+                    <span>Got it</span>
+                    <span className="text-brand-orange">✓</span>
+                  </button>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
   );

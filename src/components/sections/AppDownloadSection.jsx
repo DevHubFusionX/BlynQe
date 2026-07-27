@@ -1,136 +1,103 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Apple, Play } from 'lucide-react';
 import blyneDevice from '../../assets/blyne-device.png';
 
 const AppDownloadSection = () => {
-    const containerRef = useRef(null);
-    const { scrollYProgress } = useScroll({
-        target: containerRef,
-        offset: ["start start", "end end"]
-    });
+  return (
+    <section 
+      className="relative py-24 lg:py-36 bg-[#F7F5F2] font-sans overflow-hidden border-t border-neutral-200/50"
+    >
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-center">
 
-    const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
+          {/* Left Column: Visual Mockup Showcase (5 Columns) */}
+          <div className="lg:col-span-5 flex justify-center order-2 lg:order-1 relative">
+            <motion.div
+              animate={{ y: [-8, 8, -8] }}
+              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+              className="relative w-[280px] lg:w-[320px] aspect-[1/2] select-none"
+            >
+              {/* Phone Mockup Image */}
+              <img
+                src={blyneDevice}
+                alt="blynQe App Interface"
+                className="w-full h-full object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.12)]"
+              />
 
-    return (
-        <section ref={containerRef} id="app-download" className="relative py-32 lg:py-48 bg-brand-bg font-sans overflow-hidden">
-            {/* Oversized Background Text */}
-            <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-end items-end py-20 overflow-hidden mix-blend-multiply opacity-[0.03]">
-                <motion.div style={{ y: y1 }} className="text-[25vw] leading-none font-black text-brand-dark whitespace-nowrap mr-[-2vw]">
-                    ACCESS
-                </motion.div>
-            </div>
-
-            <div className="relative z-10 max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-
-                    {/* Cinematic Mockup */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                        className="relative flex justify-center order-2 lg:order-1"
-                    >
-                        <div className="relative w-[300px] lg:w-[400px] aspect-[1/2] overflow-hidden drop-shadow-2xl">
-                            <img
-                                src={blyneDevice}
-                                alt="blynQe App Interface"
-                                className="w-full h-full object-contain"
-                            />
-
-                            {/* Floating "Live" element */}
-                            <motion.div
-                                initial={{ y: 20, opacity: 0 }}
-                                whileInView={{ y: 0, opacity: 1 }}
-                                transition={{ delay: 0.8, duration: 0.8 }}
-                                className="absolute bottom-8 left-8 right-8 bg-white/90 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-white/50"
-                            >
-                                <div className="flex items-center gap-3 mb-2">
-                                    <div className="w-8 h-8 rounded-full bg-brand-orange flex items-center justify-center text-white text-xs font-bold">EM</div>
-                                    <div>
-                                        <div className="text-xs font-bold text-brand-dark">Emma</div>
-                                        <div className="text-[10px] text-brand-grey uppercase tracking-wider">Just matched</div>
-                                    </div>
-                                </div>
-                                <div className="text-sm font-light text-brand-dark italic">
-                                    "This feels different. In a good way."
-                                </div>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-
-                    {/* Minimal Content */}
-                    <div className="order-1 lg:order-2 text-center lg:text-left">
-                        <motion.span
-                            initial={{ opacity: 0, x: -20 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8 }}
-                            className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-8 block"
-                        >
-                            Everywhere You Are
-                        </motion.span>
-                        <motion.h2
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 0.8, delay: 0.2 }}
-                            className="text-5xl lg:text-7xl font-thin text-brand-dark leading-[1] tracking-tight mb-8"
-                        >
-                            Your connection, <br />
-                            <span className="font-bold text-brand-orange">in your pocket.</span>
-                        </motion.h2>
-                        <motion.p
-                            initial={{ opacity: 0 }}
-                            whileInView={{ opacity: 1 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.5 }}
-                            className="text-xl text-brand-grey font-light leading-relaxed mb-12 max-w-md mx-auto lg:mx-0"
-                        >
-                            Seamlessly transition from introspection to interaction. Experience the full depth of blynQe on iOS and Android.
-                        </motion.p>
-
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                            <motion.a
-                                href="#"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-3 bg-brand-dark text-white px-8 py-4 rounded-xl shadow-xl hover:bg-brand-orange transition-colors duration-300"
-                            >
-                                <Apple className="w-6 h-6 fill-current" />
-                                <div className="text-left">
-                                    <div className="text-[10px] uppercase font-bold tracking-wider opacity-60">Download on the</div>
-                                    <div className="text-lg font-bold leading-none">App Store</div>
-                                </div>
-                            </motion.a>
-
-                            <motion.a
-                                href="#"
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.7 }}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="flex items-center gap-3 bg-white text-brand-dark border border-brand-dark/10 px-8 py-4 rounded-xl hover:border-brand-orange/50 transition-colors duration-300"
-                            >
-                                <Play className="w-6 h-6 fill-current" />
-                                <div className="text-left">
-                                    <div className="text-[10px] uppercase font-bold tracking-wider opacity-60">Get it on</div>
-                                    <div className="text-lg font-bold leading-none">Google Play</div>
-                                </div>
-                            </motion.a>
-                        </div>
-                    </div>
+              {/* Floating Match Card (Translucent Glassmorphism) */}
+              <motion.div
+                initial={{ y: 25, opacity: 0 }}
+                whileInView={{ y: 0, opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="absolute bottom-16 -right-4 lg:-right-8 bg-white/90 backdrop-blur-md p-5 rounded-2xl shadow-[0_15px_30px_-5px_rgba(0,0,0,0.08)] border border-white/60 w-60 text-left"
+              >
+                <div className="flex items-center gap-3 mb-2.5">
+                  <div className="w-8 h-8 rounded-full bg-brand-orange/15 flex items-center justify-center text-xs font-bold text-brand-orange">
+                    E
+                  </div>
+                  <div>
+                    <div className="text-xs font-bold text-brand-dark">Emma, 27</div>
+                    <div className="text-[9px] text-[#FF7A00] font-bold uppercase tracking-wider">Just matched</div>
+                  </div>
                 </div>
+                <div className="text-xs font-light text-brand-grey leading-relaxed italic">
+                  "This feels different. In a good way."
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Right Column: Copy & Store Buttons (7 Columns) */}
+          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left order-1 lg:order-2 lg:pl-12">
+            
+            {/* Header Badge */}
+            <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-[0.25em] mb-4 block">
+              Everywhere You Are
+            </span>
+
+            {/* Premium Heading */}
+            <h2 className="text-5xl lg:text-[4.25rem] font-extrabold tracking-tight text-brand-dark leading-[0.95] mb-6">
+              Your connection, <br />
+              <span className="font-extralight italic text-brand-orange">in your pocket.</span>
+            </h2>
+
+            {/* Description Subtext */}
+            <p className="text-base sm:text-lg text-brand-grey font-light leading-relaxed mb-10 max-w-lg">
+              Seamlessly transition from introspection to interaction. Experience the full depth of blynQe on iOS and Android.
+            </p>
+
+            {/* Matching App Store & Play Store Pills */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+              <a
+                href="#"
+                className="flex items-center justify-center gap-3 bg-brand-dark hover:bg-[#2D2A26] text-white px-7 py-3 rounded-full shadow-md transition-colors duration-300 border border-white/5 cursor-pointer"
+              >
+                <Apple className="w-5 h-5 fill-current" />
+                <div className="text-left">
+                  <div className="text-[9px] uppercase font-bold tracking-widest opacity-60 leading-none mb-0.5">Download on the</div>
+                  <div className="text-sm font-extrabold leading-none">App Store</div>
+                </div>
+              </a>
+
+              <a
+                href="#"
+                className="flex items-center justify-center gap-3 bg-brand-dark hover:bg-[#2D2A26] text-white px-7 py-3 rounded-full shadow-md transition-colors duration-300 border border-white/5 cursor-pointer"
+              >
+                <Play className="w-5 h-5 fill-current" />
+                <div className="text-left">
+                  <div className="text-[9px] uppercase font-bold tracking-widest opacity-60 leading-none mb-0.5">Get it on</div>
+                  <div className="text-sm font-extrabold leading-none">Google Play</div>
+                </div>
+              </a>
             </div>
-        </section>
-    );
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default AppDownloadSection;

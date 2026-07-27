@@ -1,111 +1,123 @@
-import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
-import appShots from '../../assets/appShots.png';
+import { Link } from 'lucide-react';
 
 const WhyChooseSection = () => {
+  const scrollToHow = () => {
+    const howSection = document.getElementById('how-it-works');
+    if (howSection) {
+      howSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <section id="why-us" className="relative py-24 lg:py-48 bg-gradient-to-b from-brand-bg to-white font-sans overflow-hidden">
-      {/* Immersive background elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-brand-orange/5 rounded-full blur-[150px] mix-blend-multiply" />
-        <div className="absolute -top-40 right-0 w-[600px] h-[600px] bg-brand-peach/20 rounded-full blur-[120px]" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        <div className="flex flex-col items-center text-center mb-20 lg:mb-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+    <section 
+      className="relative py-24 bg-brand-bg font-sans overflow-hidden border-y border-neutral-100/60"
+    >
+      <div className="max-w-6xl mx-auto px-6 relative z-10">
+        
+        {/* Top Centered Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16 lg:mb-20">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-brand-dark leading-tight tracking-tight mb-6">
+            Real connections. <br />
+            Without the endless search.
+          </h2>
+          <p className="text-base sm:text-lg text-brand-grey font-light leading-relaxed mb-6">
+            We redesigned dating to focus on depth. BlynQe uses values-based behavior and paced, guided introductions to help you meet people who align with your goals.
+          </p>
+          <button 
+            onClick={scrollToHow}
+            className="text-[#0066FE] hover:text-[#0055D0] font-semibold text-sm inline-flex items-center gap-1 cursor-pointer transition-colors"
           >
-            <span className="inline-block px-4 py-1.5 rounded-full bg-brand-orange/10 text-brand-orange text-xs font-bold uppercase tracking-[0.2em] mb-8 border border-brand-orange/20">
-              The Interface of Intent
-            </span>
-          </motion.div>
-
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-6xl lg:text-[8rem] font-heading font-bold text-brand-dark leading-[1] mb-10 tracking-[-0.04em]"
-          >
-            How App <br />
-            <span className="text-brand-orange font-thin italic">works.</span>
-          </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1, delay: 0.4 }}
-            className="text-xl lg:text-3xl text-brand-grey font-light leading-relaxed max-w-3xl mb-12"
-          >
-            Flow is for everyone, from freelancers and business owners to young families. <br className="hidden lg:block" />
-            Designed to bridge the gap between digital interaction and real human depth.
-          </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.8 }}
-          >
-            <motion.button
-              whileHover={{
-                scale: 1.05,
-                boxShadow: "0 25px 50px -12px rgba(244, 176, 86, 0.4)"
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="group flex items-center gap-4 bg-[#F4B056] text-brand-dark px-12 py-6 rounded-full font-bold text-xl shadow-xl transition-all duration-300"
-            >
-              <span>Explore blynQe</span>
-              <div className="w-8 h-8 rounded-full bg-brand-dark/10 flex items-center justify-center group-hover:bg-brand-dark transition-all">
-                <ArrowRight className="w-5 h-5 group-hover:text-white transition-colors" />
-              </div>
-            </motion.button>
-          </motion.div>
+            <span>Learn more about BlynQe</span>
+            <span>&rarr;</span>
+          </button>
         </div>
 
-        {/* Massive Centered Mockup */}
-        <motion.div
-          initial={{ opacity: 0, y: 100, scale: 0.95 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-          className="relative max-w-6xl mx-auto -mx-6 md:mx-auto"
-        >
-          <div className="relative rounded-3xl lg:rounded-[3rem] p-1 lg:p-8 bg-white/40 backdrop-blur-2xl border border-white/60 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] overflow-hidden">
-            <img
-              src={appShots}
-              alt="blynQe App Interface"
-              className="w-full h-auto rounded-[2rem] shadow-2xl scale-[1.02] hover:scale-100 transition-transform duration-[2s]"
-            />
+        {/* 2-Column Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          
+          {/* Left Card: Guided Introductions */}
+          <div className="bg-white border border-neutral-100 rounded-[2rem] p-8 lg:p-10 flex flex-col justify-between shadow-sm min-h-[500px] transition-all hover:shadow-md">
+            
+            <div className="flex flex-col items-start text-left">
+              <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
+                Guided Introductions
+              </span>
+              <h3 className="text-2xl font-bold text-brand-dark mb-4">
+                Meet matches where they're comfortable.
+              </h3>
+              <p className="text-brand-grey text-sm font-light leading-relaxed mb-6">
+                A structured icebreaker bubble appears when both users connect. Skip the dry, generic greetings and jump straight into deep conversations about things that matter.
+              </p>
+              <button 
+                onClick={scrollToHow}
+                className="text-[#0066FE] hover:text-[#0055D0] font-semibold text-xs inline-flex items-center gap-1 cursor-pointer transition-colors"
+              >
+                <span>Explore our conversation prompts</span>
+                <span>&gt;</span>
+              </button>
+            </div>
 
-            {/* Glossy overlay effect */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 via-transparent to-transparent pointer-events-none" />
+            {/* In-app illustration box */}
+            <div className="bg-[#F8F9FA] border border-neutral-100/50 rounded-2xl p-6 mt-8 flex flex-col items-center justify-center min-h-[180px] shadow-inner">
+              <div className="bg-[#1C1814] text-white text-[11px] px-5 py-3 rounded-full shadow-md font-medium mb-3 select-none">
+                Ready for your first topic?
+              </div>
+              <div className="bg-[#120E0A] text-white text-[11px] px-5 py-3 rounded-full shadow-md font-bold flex items-center gap-2 border border-white/10 select-none">
+                <span className="w-2 h-2 rounded-full bg-[#FF7A00]" />
+                <span>Start conversation</span>
+              </div>
+            </div>
+
           </div>
 
-          {/* Decorative floating elements */}
-          <motion.div
-            animate={{ y: [-10, 10, -10], rotate: [0, 5, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -top-12 -left-12 w-48 h-48 bg-brand-orange-light/50 backdrop-blur-3xl rounded-full -z-10 border border-white/40 shadow-inner"
-          />
-          <motion.div
-            animate={{ y: [10, -10, 10], rotate: [0, -5, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -bottom-16 -right-16 w-64 h-64 bg-brand-dark/5 backdrop-blur-2xl rounded-full -z-10 border border-brand-dark/5"
-          />
-        </motion.div>
-      </div>
+          {/* Right Card: Offline Coordinates */}
+          <div className="bg-white border border-neutral-100 rounded-[2rem] p-8 lg:p-10 flex flex-col justify-between shadow-sm min-h-[500px] transition-all hover:shadow-md">
+            
+            <div className="flex flex-col items-start text-left">
+              <span className="text-[10px] font-bold text-neutral-400 uppercase tracking-widest mb-3">
+                Offline Coordinates
+              </span>
+              <h3 className="text-2xl font-bold text-brand-dark mb-4">
+                Plan a meet. Land on a date.
+              </h3>
+              <p className="text-brand-grey text-sm font-light leading-relaxed mb-6">
+                We help transition digital chemistry to real-world connection. Safely coordinate coffee, walks, or dinners at curated, comfortable local spots.
+              </p>
+              <button 
+                onClick={scrollToHow}
+                className="text-[#0066FE] hover:text-[#0055D0] font-semibold text-xs inline-flex items-center gap-1 cursor-pointer transition-colors"
+              >
+                <span>Learn about date safety features</span>
+                <span>&gt;</span>
+              </button>
+            </div>
 
-      {/* Oversized Signature Background Text */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-[0.02] pointer-events-none select-none translate-y-1/2">
-        <h3 className="text-[30vw] font-black leading-none text-brand-dark whitespace-nowrap">
-          SYSTEM
-        </h3>
+            {/* Magic Link illustration box */}
+            <div className="bg-[#F8F9FA] border border-neutral-100/50 rounded-2xl p-6 mt-8 flex flex-col justify-center min-h-[180px] shadow-inner">
+              <div className="bg-white border border-neutral-200/50 rounded-xl p-4 w-full shadow-sm flex flex-col gap-2.5">
+                <div className="flex justify-between items-center">
+                  <span className="text-[10px] text-neutral-500 font-mono select-none">
+                    go.blynqe.com/coords/blue-bottle
+                  </span>
+                  <span className="text-[9px] bg-green-50 text-green-600 font-bold px-2 py-0.5 rounded-full select-none">
+                    Curated
+                  </span>
+                </div>
+                <div className="text-[10px] text-neutral-400 font-light text-left leading-relaxed">
+                  Coordinated meetup at Blue Bottle Coffee in Brooklyn.
+                </div>
+                <div className="flex gap-2 text-[9px] text-neutral-400/80 font-mono select-none">
+                  <span>#Coffee</span>
+                  <span>#Curated</span>
+                  <span>#Verified</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
       </div>
     </section>
   );

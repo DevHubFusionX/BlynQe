@@ -4,16 +4,32 @@ import HowItWorksSection from '../components/sections/HowItWorksSection';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import AppDownloadSection from '../components/sections/AppDownloadSection';
 import CTASection from '../components/sections/CTASection';
+import ScrollAnimatedSection from '../components/ScrollAnimatedSection';
 
 const Home = () => {
   return (
     <div>
       <HeroSection />
-      <WhyChooseSection />
-      <HowItWorksSection />
-      <TestimonialsSection />
-      <AppDownloadSection />
-      <CTASection />
+      
+      <ScrollAnimatedSection id="why-us">
+        <WhyChooseSection />
+      </ScrollAnimatedSection>
+      
+      <ScrollAnimatedSection id="how-it-works">
+        <HowItWorksSection />
+      </ScrollAnimatedSection>
+      
+      <ScrollAnimatedSection id="testimonials">
+        <TestimonialsSection />
+      </ScrollAnimatedSection>
+      
+      <ScrollAnimatedSection id="app-download">
+        <AppDownloadSection />
+      </ScrollAnimatedSection>
+      
+      <ScrollAnimatedSection id="cta">
+        <CTASection />
+      </ScrollAnimatedSection>
     </div>
   );
 };

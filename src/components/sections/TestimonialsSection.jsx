@@ -1,113 +1,98 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Quote, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const TestimonialsSection = () => {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, 200]);
-
   const testimonials = [
     {
-      name: "Sarah & Mike",
-      location: "New York, USA",
-      quote: "We weren't looking for just anyone. We were looking for someone who understood our quiet moments. blynQe found that alignment.",
-      image: "https://images.unsplash.com/photo-1522529599102-193c0d76b5b6?w=400&h=400&fit=crop"
+      name: "Sarah",
+      quote: "even my friends noticed i was spending less time on dating apps and more time actually going out"
     },
     {
-      name: "Lucas & Elena",
-      location: "Berlin, Germany",
-      quote: "The intentionality of the platform is palpable. No noise, just a clear path to the person I was meant to meet.",
-      image: "https://images.unsplash.com/photo-1623330188314-8f4645626731?w=400&h=400&fit=crop"
+      name: "Lucas",
+      quote: "feels like a breath of fresh air between you and the infinite swipe loops... rare to see dating apps this intentional anymore"
     },
     {
       name: "David",
-      location: "London, UK",
-      quote: "I was tired of the games. blynQe offered a dignified way to date, respectful of my time and my values.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop"
+      quote: "it's a beautiful concept paired with a beautiful app that helps you honor your search for depth... met someone amazing here"
     }
   ];
 
   return (
-    <section ref={containerRef} className="relative py-32 lg:py-48 bg-brand-bg font-sans overflow-hidden">
-      {/* Oversized Background Text */}
-      <div className="absolute inset-0 pointer-events-none z-0 flex flex-col justify-center items-end py-20 overflow-hidden mix-blend-multiply opacity-[0.03]">
-        <motion.div style={{ y: y1 }} className="text-[25vw] leading-none font-black text-brand-dark whitespace-nowrap mr-[-2vw]">
-          STORIES
-        </motion.div>
-      </div>
+    <section className="relative py-24 lg:py-36 bg-[#EDEDED] text-brand-dark font-sans overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        
+        {/* Top Section Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center mb-16 lg:mb-20">
+          
+          {/* Left Column: Heading and Rating */}
+          <div className="lg:col-span-6 flex flex-col items-start">
+            
+            {/* Stars & Text Rating */}
+            <div className="flex items-center gap-2">
+              <span className="text-brand-dark tracking-wider text-sm select-none">★★★★★</span>
+              <span className="text-xs font-bold text-brand-dark/90">5.0</span>
+              <span className="text-xs text-brand-dark/45">(48)</span>
+            </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-end justify-between mb-24 lg:mb-32">
-          <div className="max-w-2xl">
-            <motion.span
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="text-brand-orange font-bold tracking-[0.3em] uppercase text-xs mb-8 block"
-            >
-              Real Connections
-            </motion.span>
-            <motion.h2
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-5xl lg:text-7xl font-thin text-brand-dark leading-[1] tracking-tight"
-            >
-              Voices from the <br />
-              <span className="font-bold text-brand-orange">community.</span>
-            </motion.h2>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-brand-dark leading-tight mb-8 mt-4">
+              People put their <br />
+              phone down.
+            </h2>
+
+            <button className="bg-white hover:bg-neutral-100 text-brand-dark px-6 py-3 rounded-full font-bold text-xs tracking-wider transition-colors shadow-sm cursor-pointer">
+              See all reviews
+            </button>
           </div>
 
-          <motion.button
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="hidden lg:flex items-center gap-2 text-brand-dark font-bold uppercase tracking-widest text-xs hover:text-brand-orange transition-colors"
-          >
-            Read all stories <ArrowRight className="w-4 h-4" />
-          </motion.button>
-        </div>
+          {/* Right Column: Interactive CSS Vinyl Record */}
+          <div className="lg:col-span-6 flex justify-end">
+            <div className="relative w-64 h-64 lg:w-[350px] lg:h-[350px] rounded-full bg-[#120E0A] flex items-center justify-center shadow-2xl animate-[spin_25s_linear_infinite] overflow-hidden">
+              
+              {/* Concentric Vinyl Grooves */}
+              <div className="absolute inset-[5%] rounded-full border border-white/[0.04]" />
+              <div className="absolute inset-[15%] rounded-full border border-white/[0.04]" />
+              <div className="absolute inset-[25%] rounded-full border border-white/[0.04]" />
+              <div className="absolute inset-[35%] rounded-full border border-white/[0.04]" />
+              <div className="absolute inset-[45%] rounded-full border border-white/[0.04]" />
 
-        {/* Editorial Slider Layout */}
-        <div className="flex overflow-x-auto pb-12 gap-8 snap-x snap-mandatory scrollbar-hide -mx-6 px-6 lg:overflow-visible lg:grid lg:grid-cols-3 lg:gap-12 lg:mx-0 lg:px-0">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
-              className="min-w-[85vw] md:min-w-[60vw] lg:min-w-0 snap-center rounded-[2rem] bg-white p-8 lg:p-12 shadow-xl shadow-brand-dark/5 flex flex-col justify-between h-full relative group border border-transparent hover:border-brand-orange/10 transition-colors"
-            >
-              <Quote className="absolute top-8 right-8 w-12 h-12 text-brand-orange/10 group-hover:text-brand-orange/30 transition-colors duration-500" />
-
-              <div className="mb-8">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-14 h-14 rounded-full overflow-hidden border border-brand-dark/10">
-                    <img src={testimonial.image} alt={testimonial.name} className="w-full h-full object-cover" />
-                  </div>
-                  <div>
-                    <div className="font-bold text-brand-dark text-lg">{testimonial.name}</div>
-                    <div className="text-brand-grey text-xs uppercase tracking-widest">{testimonial.location}</div>
-                  </div>
-                </div>
-                <p className="text-xl lg:text-2xl font-light text-brand-dark leading-relaxed italic">
-                  "{testimonial.quote}"
-                </p>
+              {/* Center Vinyl Label */}
+              <div className="absolute inset-[35%] rounded-full bg-[#FFF3E8] border-[6px] lg:border-[8px] border-[#120E0A] flex items-center justify-center shadow-inner">
+                {/* Spindle hole */}
+                <div className="w-3.5 h-3.5 rounded-full bg-[#120E0A]" />
               </div>
+            </div>
+          </div>
 
-              <div className="h-1 w-12 bg-brand-orange/20 rounded-full group-hover:w-full group-hover:bg-brand-orange transition-all duration-700" />
-            </motion.div>
-          ))}
         </div>
+
+        {/* Bottom Testimonials Deck */}
+        <div className="bg-white rounded-[2rem] p-8 lg:p-12 shadow-xl shadow-neutral-300/40">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-0 divide-y lg:divide-y-0 lg:divide-x divide-neutral-200">
+            {testimonials.map((testimonial, index) => (
+              <div 
+                key={index}
+                className={`flex flex-col justify-between min-h-[160px] pt-6 lg:pt-0 ${
+                  index === 0 
+                    ? 'lg:pr-8 lg:pt-0' 
+                    : index === 1 
+                      ? 'lg:px-8' 
+                      : 'lg:pl-8'
+                }`}
+              >
+                <div>
+                  <span className="text-brand-dark tracking-wider text-xs select-none block mb-4">★★★★★</span>
+                  <p className="text-base lg:text-lg font-normal text-brand-dark leading-relaxed">
+                    "{testimonial.quote}"
+                  </p>
+                </div>
+                
+                <span className="text-xs text-brand-dark/40 font-medium block mt-6">
+                  {testimonial.name}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+
       </div>
     </section>
   );
