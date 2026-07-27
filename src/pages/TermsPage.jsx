@@ -133,11 +133,18 @@ const TermsPage = () => {
                     {/* Content Area */}
                     <div className="lg:col-span-8 bg-white rounded-3xl border border-brand-dark/5 p-8 lg:p-12 shadow-sm">
                         <div className="prose prose-brand max-w-none space-y-12 text-brand-dark/80 font-light leading-relaxed">
+                            
+                            <p className="text-brand-dark/70 italic bg-brand-orange/5 p-6 rounded-2xl border border-brand-orange/10">
+                                These Terms of Service ("Terms") form a binding agreement between you ("User," "you") and NEMVOL LTD, a company registered in Lagos, Nigeria ("we," "us," "the Company"), the operator of the BlynQe mobile application and related services (the "Service"). By creating an account or using the Service, you agree to these Terms. If you do not agree, do not use the Service.
+                            </p>
 
                             <section id="section-1" className="scroll-mt-28 space-y-4">
                                 <h2 className="text-2xl lg:text-3xl font-bold text-brand-dark border-b border-brand-dark/5 pb-4">
                                     1. Eligibility
                                 </h2>
+                                <p>
+                                    You must be at least 18 years old to create an account or use the Service. There is no exception to this requirement, including for users who may be considered adults at a younger age in their local jurisdiction.
+                                </p>
                                 <p>
                                     By creating an account, you represent that all information you provide, including your date of birth, is accurate and that you are not prohibited from using the Service under the laws of your jurisdiction.
                                 </p>
@@ -154,7 +161,7 @@ const TermsPage = () => {
                                     2. Account Registration & Security
                                 </h2>
                                 <p>
-                                    You are responsible for maintaining the confidentiality of your login credentials and for all activity under your account. You agree to notify us promptly at <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a> of any unauthorized use. We are not liable for losses arising from unauthorized access resulting from your failure to safeguard your credentials.
+                                    You are responsible for maintaining the confidentiality of your login credentials and for all activity under your account. You agree to notify us promptly through BlynQe official emails (such as <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a>) of any unauthorized use. We are not liable for losses arising from unauthorized access resulting from your failure to safeguard your credentials.
                                 </p>
                                 <p>
                                     You may only maintain one account per person. Creating multiple or duplicate accounts to evade a ban or moderation action is prohibited and grounds for permanent termination.
