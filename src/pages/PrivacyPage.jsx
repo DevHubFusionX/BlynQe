@@ -138,7 +138,7 @@ const PrivacyPage = () => {
                                     1. Who Is Responsible for Your Data
                                 </h2>
                                 <p>
-                                    NEMVOL LTD, a company registered in Lagos, Nigeria, is the data controller responsible for your personal data. BlynQe is one of the products operated by NEMVOL LTD. You can reach our privacy contact at <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a>, or our parent company at <a href="mailto:nemvolltd@gmail.com" className="text-brand-orange font-semibold hover:underline">nemvolltd@gmail.com</a>.
+                                    NEMVOL LTD is the data controller responsible for your personal data. BlynQe is one of the products operated by NEMVOL LTD. You can reach our privacy contact at <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a>, or our parent company at <a href="mailto:nemvolltd@gmail.com" className="text-brand-orange font-semibold hover:underline">nemvolltd@gmail.com</a>.
                                 </p>
                             </section>
 
@@ -319,7 +319,7 @@ const PrivacyPage = () => {
                                     15. Contact Us
                                 </h2>
                                 <p>
-                                    For privacy questions or to exercise your rights, contact <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a> or write to NEMVOL LTD, Lagos, Nigeria.
+                                    For privacy questions or to exercise your rights, contact <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a> or write to NEMVOL LTD.
                                 </p>
                             </section>
 

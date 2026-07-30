@@ -9,6 +9,7 @@ import FAQPage from '../pages/FAQPage';
 import PrivacyPage from '../pages/PrivacyPage';
 import TermsPage from '../pages/TermsPage';
 import CommunityGuidelinesPage from '../pages/CommunityGuidelinesPage';
+import ChildSafetyPage from '../pages/ChildSafetyPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
 export const router = createBrowserRouter([
@@ -25,6 +26,7 @@ export const router = createBrowserRouter([
       { path: 'privacy', element: <PrivacyPage /> },
       { path: 'terms', element: <TermsPage /> },
       { path: 'community-guidelines', element: <CommunityGuidelinesPage /> },
+      { path: 'child-safety', element: <ChildSafetyPage /> },
       { path: '*', element: <NotFoundPage /> }
     ]
   }

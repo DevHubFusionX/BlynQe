@@ -29,7 +29,8 @@ const Footer = () => {
     legal: [
       { name: 'Privacy', path: '/privacy' },
       { name: 'Terms', path: '/terms' },
-      { name: 'Guidelines', path: '/community-guidelines' }
+      { name: 'Guidelines', path: '/community-guidelines' },
+      { name: 'Child Safety', path: '/child-safety' }
     ]
   };
 

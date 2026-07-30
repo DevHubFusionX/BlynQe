@@ -135,7 +135,7 @@ const TermsPage = () => {
                         <div className="prose prose-brand max-w-none space-y-12 text-brand-dark/80 font-light leading-relaxed">
                             
                             <p className="text-brand-dark/70 italic bg-brand-orange/5 p-6 rounded-2xl border border-brand-orange/10">
-                                These Terms of Service ("Terms") form a binding agreement between you ("User," "you") and NEMVOL LTD, a company registered in Lagos, Nigeria ("we," "us," "the Company"), the operator of the BlynQe mobile application and related services (the "Service"). By creating an account or using the Service, you agree to these Terms. If you do not agree, do not use the Service.
+                                These Terms of Service ("Terms") form a binding agreement between you ("User," "you") and NEMVOL LTD ("we," "us," "the Company"), the operator of the BlynQe mobile application and related services (the "Service"). By creating an account or using the Service, you agree to these Terms. If you do not agree, do not use the Service.
                             </p>
 
                             <section id="section-1" className="scroll-mt-28 space-y-4">
@@ -337,7 +337,7 @@ const TermsPage = () => {
                                     16. Contact
                                 </h2>
                                 <p>
-                                    Questions about these Terms can be sent to <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a> or NEMVOL LTD, Lagos, Nigeria.
+                                    Questions about these Terms can be sent to <a href="mailto:blynqe3@gmail.com" className="text-brand-orange font-semibold hover:underline">blynqe3@gmail.com</a> or NEMVOL LTD.
                                 </p>
                             </section>
 
